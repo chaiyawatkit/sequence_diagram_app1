@@ -1,0 +1,153 @@
+title Home
+
+participant WSA Application
+participant WSA Service
+participant Banner
+participant Portfolio
+participant QuickMenus
+participant WatchList
+participant AssetThemes
+participant MarketSummary
+participant EconomicCalendars
+participant Feed
+
+
+//banner
+activate WSA Application
+WSA Application->WSA Service: Request Banner 
+activate WSA Service
+WSA Service->Banner: Request Banner 
+activate Banner
+WSA Service<<--Banner: Response Banner 
+WSA Application<<--WSA Service: Request Banner 
+
+deactivateafter WSA Application
+deactivateafter WSA Service
+deactivateafter Banner
+
+alt CASE: Login
+//Portfolio
+space 
+activate WSA Application
+WSA Application->WSA Service: Request Portfolio 
+activate WSA Service
+WSA Service->Portfolio: Request Portfolio 
+activate Portfolio
+WSA Service<<--Portfolio: Response Portfolio 
+WSA Application<<--WSA Service: Request Portfolio 
+
+deactivateafter WSA Application
+deactivateafter WSA Service
+deactivateafter Portfolio
+
+end
+
+
+//QuickMenus
+
+space 
+activate WSA Application
+WSA Application->WSA Service: Request QuickMenus 
+activate WSA Service
+WSA Service->QuickMenus: Request QuickMenus 
+activate QuickMenus
+WSA Service<<--QuickMenus: Response QuickMenus 
+WSA Application<<--WSA Service: Request QuickMenus 
+
+deactivateafter WSA Application
+deactivateafter WSA Service
+deactivateafter QuickMenus
+
+alt CASE: Login 
+//WatchList
+space 
+activate WSA Application
+WSA Application->WSA Service: Request WatchList 
+activate WSA Service
+WSA Service->WatchList: Request WatchList 
+activate WatchList
+WSA Service<<--WatchList: Response WatchList 
+WSA Application<<--WSA Service: Request WatchList 
+
+deactivateafter WSA Application
+deactivateafter WSA Service
+deactivateafter WatchList
+
+end 
+
+
+
+//AssetThemes
+
+space 
+activate WSA Application
+WSA Application->WSA Service: Request AssetThemes 
+activate WSA Service
+WSA Service->AssetThemes: Request AssetThemes 
+activate AssetThemes
+WSA Service<<--AssetThemes: Response AssetThemes 
+WSA Application<<--WSA Service: Request AssetThemes 
+
+deactivateafter WSA Application
+deactivateafter WSA Service
+deactivateafter AssetThemes
+
+
+
+//MarketSummary
+
+space 
+activate WSA Application
+WSA Application->WSA Service: Request MarketSummary 
+activate WSA Service
+WSA Service->MarketSummary: Request MarketSummary 
+activate MarketSummary
+WSA Service<<--MarketSummary: Response MarketSummary 
+WSA Application<<--WSA Service: Request MarketSummary 
+
+deactivateafter WSA Application
+deactivateafter WSA Service
+deactivateafter MarketSummary
+
+
+//MarketSummary
+
+space 
+activate WSA Application
+WSA Application->WSA Service: Request EconomicCalendars 
+activate WSA Service
+WSA Service->EconomicCalendars: Request EconomicCalendars 
+activate EconomicCalendars
+WSA Service<<--EconomicCalendars: Response EconomicCalendars 
+WSA Application<<--WSA Service: Request EconomicCalendars 
+
+deactivateafter WSA Application
+deactivateafter WSA Service
+deactivateafter EconomicCalendars
+
+
+//Feed
+
+space 
+activate WSA Application
+WSA Application->WSA Service: Request Feed 
+activate WSA Service
+WSA Service->Feed: Request Feed 
+activate Feed
+WSA Service<<--Feed: Response Feed 
+WSA Application<<--WSA Service: Request Feed 
+
+deactivateafter WSA Application
+deactivateafter WSA Service
+deactivateafter Feed
+
+
+
+
+
+
+
+
+
+
+

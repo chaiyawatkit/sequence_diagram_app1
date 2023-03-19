@@ -1,0 +1,16 @@
+
+keyword
+___________________________
+WSA Application->WSA 808
+Request  
+Response
+
+WSA 808->WGW
+Request
+
+ title
+___________________________________
+1. Get Banner News & Promotion List 
+2. Portfolio 
+
+

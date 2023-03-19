@@ -1,0 +1,38 @@
+title Update Quick Menus
+
+participant WSA Application
+participant WSA Service
+
+activate WSA Application
+WSA Application->WSA Service: Request  quick menus ID and customer ID 
+activate WSA Service
+
+WSA Service-> WSA Service: Check quick menus \n by customer ID
+
+alt CASE: quick menu not found
+
+WSA Service <<--WSA Service:Create quick menus 
+
+else CASE: found quick menu
+WSA Service <<--WSA Service:Update quick menus
+
+end
+
+
+alt CASE: success
+
+WSA Application <<--WSA Service:Response  success 
+
+else CASE: failure 
+WSA Application <<--WSA Service:Response  failure
+
+end
+
+deactivateafter WSA Service
+deactivateafter WSA Application
+
+
+
+
+
+

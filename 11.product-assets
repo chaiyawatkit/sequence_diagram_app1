@@ -1,0 +1,18 @@
+title Get Product Assets
+
+participant WSA Application
+participant WSA Service
+participant WGW Service
+
+activate WSA Application
+WSA Application->WSA Service: Request product assets by sub_theme_id
+activate WSA Service
+activate WGW Service
+
+WSA Service-> WGW Service: Request assets list by  ID
+WSA Service <<--WGW Service: Response assets list
+deactivateafter WGW Service
+
+WSA Application <<--WSA Service: Response product assets
+deactivateafter WSA Service
+deactivateafter WSA Application

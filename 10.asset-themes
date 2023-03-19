@@ -1,0 +1,11 @@
+title Get Menu asset themes
+participant WSA Application
+participant WSA Service
+
+activate WSA Application
+WSA Application->WSA Service: Request menu asset themes by customer type 
+activate WSA Service
+
+WSA Application <<--WSA Service:Response menu asset themes
+deactivateafter WSA Service
+deactivateafter WSA Application

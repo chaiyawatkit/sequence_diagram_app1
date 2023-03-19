@@ -1,0 +1,24 @@
+title Get Data By Tag
+
+participant WSA Application
+participant WSA Service
+
+activate WSA Application
+WSA Application->WSA Service: Request data in tag \n by tag_id and  Tag_type 
+activate WSA Service
+
+WSA Service-> WSA Service: find data in tag \n by tag_id and Tag_type
+
+alt CASE: Data tag not found
+
+WSA Application <<--WSA Service: Response empty data in tag
+
+
+else CASE: found watchlist
+WSA Application <<--WSA Service: Response data in tag
+
+end
+
+deactivateafter WSA Service
+deactivateafter WSA Application
+

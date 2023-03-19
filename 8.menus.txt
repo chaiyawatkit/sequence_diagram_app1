@@ -1,0 +1,35 @@
+title Menus
+participant WSA Application
+participant WSA Service
+
+activate WSA Application
+WSA Application->WSA Service: Request quick menus by customer ID
+activate WSA Service
+
+WSA Service-> WSA Service: Check quick menus \n by customer ID
+
+alt CASE: quick menu not found
+
+WSA Application <<--WSA Service: Response  quick menus default
+
+
+else CASE: found quick menu
+WSA Application <<--WSA Service: Response custom quick menus by customer ID
+
+end
+
+deactivateafter WSA Service
+deactivateafter WSA Application
+
+space 
+activate WSA Application
+WSA Application->WSA Service: Request main menus
+activate WSA Service
+WSA Application<<--WSA Service: Response main menus
+
+deactivateafter WSA Application
+
+
+
+
+

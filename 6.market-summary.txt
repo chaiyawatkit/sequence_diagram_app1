@@ -1,0 +1,20 @@
+title Get Market Summary
+participant WSA Application
+participant WSA Service
+participant WGW Service
+
+activate WSA Application
+WSA Application->WSA Service: Request market summary \n by group name, sub tab, filter
+activate WSA Service
+activate WGW Service
+
+WSA Service-> WGW Service: Request market data \n by group name, sub tab, filter
+WSA Service <<--WGW Service: Response market data 
+deactivateafter WGW Service
+
+WSA Application <<--WSA Service: Response market summary
+deactivateafter WSA Service
+deactivateafter WSA Application
+
+
+

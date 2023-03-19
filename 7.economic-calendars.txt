@@ -1,0 +1,20 @@
+title Get EconomicCalendars
+participant WSA Application
+participant WSA Service
+participant WGW Service
+
+activate WSA Application
+WSA Application->WSA Service: Request economic calendars \n by group name
+activate WSA Service
+activate WGW Service
+
+WSA Service-> WGW Service: Request  economic calendars \n data  by group name
+WSA Service <<--WGW Service: Response \neconomic calendars data 
+deactivateafter WGW Service
+
+WSA Application <<--WSA Service: Response \n economic calendars
+deactivateafter WSA Service
+deactivateafter WSA Application
+
+
+

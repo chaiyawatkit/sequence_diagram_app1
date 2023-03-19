@@ -1,0 +1,29 @@
+title Banner 
+
+participant WSA Application
+participant WSA Service
+participant WGW Service
+
+activate WSA Application
+WSA Application->WSA Service: Request banner list  \nby customer type
+activate WSA Service
+activate WGW Service
+WSA Service-> WSA Service: Check customer type 
+WSA Service-> WGW Service: Request banner list by customer type
+WSA Service <<--WGW Service: Response banner list
+deactivateafter WGW Service
+
+WSA Application <<--WSA Service: Response banner list
+deactivateafter WSA Service
+deactivateafter WSA Application
+space
+activate WSA Application
+WSA Application->WSA Service: Request banner by ID
+activate WSA Service
+activate WGW Service
+WSA Service-> WGW Service: Request banner by ID
+WSA Service <<--WGW Service: Response banner
+deactivateafter WGW Service
+WSA Application <<--WSA Service: Response banner
+deactivateafter WSA Service
+deactivateafter WSA Application

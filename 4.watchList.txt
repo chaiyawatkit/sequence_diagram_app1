@@ -1,0 +1,24 @@
+title WatchList
+
+participant WSA Application
+participant WSA Service
+
+activate WSA Application
+WSA Application->WSA Service: Request watchlist \n by customer ID
+activate WSA Service
+
+WSA Service-> WSA Service: Check watchlist  \n by customer ID
+
+alt CASE: watchlist not found
+
+WSA Application <<--WSA Service: Response  empty watchlist
+
+
+else CASE: found watchlist
+WSA Application <<--WSA Service: Response watchlist
+
+end
+
+deactivateafter WSA Service
+deactivateafter WSA Application
+

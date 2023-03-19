@@ -1,0 +1,18 @@
+title Portfolio
+participant WSA Application
+participant WSA Service
+participant WGW Service
+
+activate WSA Application
+WSA Application->WSA Service: Request portfolio \n by customer ID
+activate WSA Service
+activate WGW Service
+WSA Service-> WSA Service: Check assets by customer ID
+WSA Service-> WGW Service: Request assets 
+WSA Service <<--WGW Service: Response assets 
+deactivateafter WGW Service
+
+WSA Application <<--WSA Service: Response portfolio
+deactivateafter WSA Service
+deactivateafter WSA Application
+
