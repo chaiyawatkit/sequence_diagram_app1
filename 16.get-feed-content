@@ -1,0 +1,50 @@
+title Get Feed Content
+
+participant WSA Application
+participant WSA Service
+
+//get recommended  feed
+activate WSA Application
+WSA Application->WSA Service:Request content \nby content_id
+activate WSA Service
+WSA Application <<--WSA Service:Response recommended
+deactivateafter WSA Service
+deactivateafter WSA Application
+
+
+alt CASE:login
+activate WSA Application
+WSA Application->WSA Service:Request content related feed  \nby content_id and customer_id
+WSA Service->WSA Service:Check articles \n not like and not \nbookmark by cunstomer_id 
+activate WSA Service
+WSA Application <<--WSA Service:Response content related 5 feed sort by date
+deactivateafter WSA Service
+deactivateafter WSA Application
+
+
+
+
+else CASE not login
+
+activate WSA Application
+WSA Application->WSA Service:Request content related feed  \nby content_id
+activate WSA Service
+WSA Application <<--WSA Service:Response content related 5 feed sort by date
+deactivateafter WSA Service
+deactivateafter WSA Application
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

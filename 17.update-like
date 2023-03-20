@@ -1,0 +1,31 @@
+title Update Like Feed
+
+participant WSA Application
+participant WSA Service
+
+activate WSA Application
+WSA Application->WSA Service:Request update like content \n by content_id [] and customer_id
+activate WSA Service
+
+
+WSA Service <-WSA Service:Update like content
+
+alt  CASE:success
+WSA Application <<--WSA Service:Response update success
+else CASE:failure
+WSA Application <<--WSA Service:Response update failure
+end
+deactivateafter WSA Service
+deactivateafter WSA Application
+
+
+
+
+
+
+
+
+
+
+
+

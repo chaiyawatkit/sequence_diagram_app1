@@ -1,0 +1,58 @@
+title Search
+
+participant WSA Application
+participant WSA Service
+
+//get search recent
+alt  CASE:Login
+activate WSA Application
+WSA Application->WSA Service:Request search recent by  customer ID 
+activate WSA Service
+WSA Application <<--WSA Service:Response search recent
+deactivateafter WSA Service
+deactivateafter WSA Application
+end
+
+
+//get search trending
+space 
+activate WSA Application
+WSA Application->WSA Service:Request search trending
+activate WSA Service
+WSA Application <<--WSA Service:Response search trending
+deactivateafter WSA Application
+deactivateafter WSA Service
+
+
+//get search suggestion
+space 
+activate WSA Application
+WSA Application->WSA Service:Request search suggestion \nby keyword_search
+activate WSA Service
+WSA Service <<--WSA Service:Check keyword_search >=3 character
+alt CASE: >=3
+WSA Application <<--WSA Service:Response search suggestion include tag
+
+else
+WSA Application <<--WSA Service:Response search suggestion exclude tag
+end 
+
+deactivateafter WSA Application
+deactivateafter WSA Service
+
+
+//get search 
+space 
+activate WSA Application
+WSA Application->WSA Service:Request search by  \n keyword_search and search_filter
+activate WSA Service
+WSA Application <<--WSA Service:Response search data
+deactivateafter WSA Application
+deactivateafter WSA Service
+
+
+
+
+
+
+

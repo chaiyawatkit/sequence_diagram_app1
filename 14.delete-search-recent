@@ -1,0 +1,36 @@
+title Delete Recent Search
+
+participant WSA Application
+participant WSA Service
+
+alt  CASE:Login
+activate WSA Application
+WSA Application->WSA Service:Request search recent by  customer ID 
+activate WSA Service
+WSA Application <<--WSA Service:Response search recent
+deactivateafter WSA Service
+deactivateafter WSA Application
+space 
+activate WSA Application
+WSA Application->WSA Service:Request delete recent search by customer_ID, and recent_search_id
+alt  CASE:success
+WSA Application <<--WSA Service:Response delete success
+else CASE:failure
+WSA Application <<--WSA Service:Response delete failure
+end 
+deactivateafter WSA Application
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+

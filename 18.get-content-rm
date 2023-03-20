@@ -1,0 +1,17 @@
+title Get Contact RM
+
+participant WSA Application
+participant WSA Service
+
+activate WSA Application
+WSA Application->WSA Service:Request get contact RM by customer_id
+activate WSA Service
+WSA Application <<--WSA Service:Response contact RM
+deactivateafter WSA Service
+deactivateafter WSA Application
+
+
+
+
+
+

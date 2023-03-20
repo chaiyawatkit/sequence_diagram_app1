@@ -1,0 +1,49 @@
+title Feed
+
+participant WSA Application
+participant WSA Service
+
+//get recommended  feed
+alt  CASE:Login
+activate WSA Application
+WSA Application->WSA Service:Request recommended \nby category and content_type 
+activate WSA Service
+WSA Application <<--WSA Service:Response recommended
+deactivateafter WSA Service
+deactivateafter WSA Application
+end
+
+space 
+//get latest 3 month feed 
+activate WSA Application
+WSA Application->WSA Service:Request latest 3 month \n by category and content_type 
+
+activate WSA Service
+WSA Application <<--WSA Service:Response latest 3 month
+deactivateafter WSA Application
+deactivateafter WSA Service
+
+
+space 
+//get other  month feed 
+activate WSA Application
+WSA Application->WSA Service:Request other month \n by category and content_type 
+
+activate WSA Service
+WSA Application <<--WSA Service:Response other month
+deactivateafter WSA Application
+deactivateafter WSA Service
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,47 @@
+title Interest Customer 
+
+participant WSA Application
+participant WSA Service
+ //get interest customer
+
+activate WSA Application
+WSA Application->WSA Service:Request get interest RM by customer_id
+WSA Service <-WSA Service:Check customer_id
+
+
+
+
+activate WSA Service
+alt  CASE: not found
+WSA Application <<--WSA Service:Response interest default
+else CASE: found
+WSA Application <<--WSA Service:Response interest custom by customer_id
+end 
+deactivateafter WSA Service
+deactivateafter WSA Application
+ //update interest customer
+space 
+activate WSA Application
+WSA Application->WSA Service:Request update interest RM by customer_id and interest_id
+activate WSA Service
+WSA Service <-WSA Service:Check customer_id \n and interest_id
+
+alt  CASE: found
+WSA Service <-WSA Service:Update interest
+end
+
+
+
+alt  CASE: success
+WSA Application <<--WSA Service:Response update success
+else CASE: failure
+WSA Application <<--WSA Service:Response update failure
+end
+
+
+deactivateafter WSA Service
+deactivateafter WSA Application
+
+
+
+
