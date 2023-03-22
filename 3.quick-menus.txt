@@ -2,6 +2,8 @@ title QuickMenus
 participant WSA Application
 participant WSA Service
 
+
+alt CASE: Login
 activate WSA Application
 WSA Application->WSA Service: Request quick menus by customer ID
 activate WSA Service
@@ -21,3 +23,14 @@ end
 deactivateafter WSA Service
 deactivateafter WSA Application
 
+else CASE: Not Login
+activate WSA Application
+WSA Application->WSA Service: Request quick menus
+
+activate WSA Service
+WSA Application<<--WSA Service: Response  quick menus default
+
+deactivateafter WSA Service
+deactivateafter WSA Application
+
+end

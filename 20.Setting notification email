@@ -1,0 +1,33 @@
+title Setting notification email
+
+participant WSA Application
+participant WSA Service
+
+// get setting notification email
+activate WSA Application
+WSA Application->WSA Service: Request setting notification email \n by customer ID
+activate WSA Service
+
+WSA Application <<--WSA Service: Response setting notification email
+
+deactivateafter WSA Service
+deactivateafter WSA Application
+
+// update setting notification email
+space
+alt CASE: email is verify
+activate WSA Application
+activate WSA Service
+WSA Application->WSA Service: Request update setting notification email \n by customer ID
+WSA Service <-WSA Service: Check setting notification email \n by customer ID
+WSA Service <-WSA Service: Update setting notification email \n  by customer ID
+
+alt CASE: success
+WSA Application <<--WSA Service: Response success
+else CASE: failure
+WSA Application <<--WSA Service: Response failure
+deactivateafter WSA Service
+deactivateafter WSA Application
+
+end
+end

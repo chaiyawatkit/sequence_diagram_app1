@@ -1,0 +1,15 @@
+title Get Privacy Policy
+
+participant WSA Application
+participant WSA Service
+
+activate WSA Application
+activate WSA Service
+WSA Application->WSA Service: Request privacy policy
+
+WSA Service <-WSA Service: Check version privacy policy
+
+WSA Application <<--WSA Service: Response privacy policy
+
+deactivateafter WSA Service
+deactivateafter WSA Application

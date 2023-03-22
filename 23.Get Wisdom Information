@@ -1,0 +1,17 @@
+title Get Wisdom Information
+participant WSA Application
+participant WSA Service
+
+activate WSA Application
+activate WSA Service
+WSA Application->WSA Service: Request wisdom information by customer id
+
+WSA Service <-WSA Service: Check customer type
+alt CASE: Is Private Bank or Wisdom
+WSA Application <<--WSA Service: Response wisdom information
+else CASE: Is not Private Bank or Wisdom
+WSA Application <<--WSA Service: Response message \n'Customer is not type Private Bank or Wisdom'
+end
+
+deactivateafter WSA Service
+deactivateafter WSA Application
