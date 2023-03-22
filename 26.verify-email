@@ -1,0 +1,38 @@
+title Verify Email
+
+participant WSA Application
+participant WSA Service
+participant Mail SMTP Server
+participant Mail Box
+participant EAI
+
+activate WSA Application
+WSA Application->WSA Service: Request verify email \nby customer ID and email
+activate WSA Service
+WSA Service->Mail SMTP Server: Request send email \nverify template
+activate Mail SMTP Server
+Mail SMTP Server->Mail Box: Send email to customer
+activate Mail Box
+deactivateafter Mail SMTP Server
+
+Mail Box<-Mail Box:Check customer \nclick verify link
+alt CASE: Customer click verify link
+WSA Service<<--Mail Box: Response customer is verify email
+deactivateafter Mail Box
+WSA Service<-WSA Service: Check customer verify email
+alt CASE: verfiy success
+WSA Service<<--WSA Service:Update status email user is verify
+end
+activate EAI
+WSA Service->EAI:Update status email user is verify
+WSA Service<<--EAI:Response
+WSA Service->WSA Service:Check status update from EAI
+alt CASE: success
+WSA Application<--WSA Service:Response success
+else CASE: failure
+WSA Application<--WSA Service:Response failure
+end
+deactivateafter EAI
+
+deactivateafter WSA Service
+deactivateafter WSA Application

@@ -1,0 +1,32 @@
+title Profile Image
+
+participant WSA Application
+participant WSA Service
+participant Cloud Service
+
+
+activate WSA Application
+WSA Application->WSA Service: Request update profile image \n by customer ID
+activate WSA Service
+
+WSA Service->Cloud Service: Request upload image
+activate Cloud Service
+WSA Service<<--Cloud Service: Response url image
+WSA Service-> WSA Service: Check profile image by customer ID
+
+alt CASE: found profile image
+WSA Service-> WSA Service: Update profile image
+
+else CASE: not found profile image
+WSA Service-> WSA Service: Create profile image
+end
+
+alt CASE: success
+WSA Application<<--WSA Service: Response success
+else CASE: failure
+WSA Application<<--WSA Service: Response failure
+end
+
+deactivateafter WSA Service
+deactivateafter WSA Application
+deactivateafter Cloud Service

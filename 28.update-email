@@ -1,0 +1,25 @@
+title Update Email
+
+participant WSA Application
+participant WSA Service
+participant Mail SMTP Server
+participant Mail Box
+
+activate WSA Application
+WSA Application->WSA Service: Request update email \nby customer ID and email
+activate WSA Service
+WSA Service->WSA Service:Update email by customer ID
+WSA Service->WSA Service:Update status verify email \nuser to not verify
+alt CASE: Update success
+WSA Service->Mail SMTP Server: Request send email \nverify template
+activate Mail SMTP Server
+Mail SMTP Server->Mail Box: Send email to customer
+WSA Application<<--WSA Service:Response success
+else CASE: Update fail
+WSA Application<<--WSA Service:Response failure
+
+end
+deactivateafter Mail SMTP Server
+
+deactivateafter WSA Service
+deactivateafter WSA Application
