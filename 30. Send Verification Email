@@ -1,0 +1,25 @@
+title Send Verification Email
+
+participant WSA Application
+participant WSA Service
+participant Mail SMTP Server
+participant Mail Box
+
+activate WSA Application
+WSA Application->WSA Service: Request update email \nby customer ID, email
+activate WSA Service
+WSA Service->WSA Service: Check customer by customer ID
+alt CASE: Found customer
+WSA Service->WSA Service: Generate verify_code
+WSA Service->Mail SMTP Server: Request send email \notp verification email template with verify_code
+activate Mail SMTP Server
+Mail SMTP Server->Mail Box: Send email to customer
+WSA Application<<--WSA Service:Response ref_code
+else CASE: Not found customer
+WSA Application<<--WSA Service:Response failure
+
+end
+deactivateafter Mail SMTP Server
+
+deactivateafter WSA Service
+deactivateafter WSA Application
